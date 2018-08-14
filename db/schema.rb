@@ -14,19 +14,23 @@ ActiveRecord::Schema.define(version: 2018_08_14_102126) do
 
   create_table "answers", force: :cascade do |t|
     t.text "content"
-    t.integer "MedCase_id"
+    t.integer "user_id"
+    t.integer "med_case_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["MedCase_id"], name: "index_answers_on_MedCase_id"
+    t.index ["med_case_id"], name: "index_answers_on_med_case_id"
+    t.index ["user_id"], name: "index_answers_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
     t.text "content"
+    t.integer "user_id"
     t.string "commentable_type"
     t.integer "commentable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "doctor_profiles", force: :cascade do |t|
@@ -56,19 +60,11 @@ ActiveRecord::Schema.define(version: 2018_08_14_102126) do
     t.string "profile_type"
     t.integer "profile_id"
     t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string "current_sign_in_ip"
-    t.string "last_sign_in_ip"
     t.string "authentication_token", limit: 30
     t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["profile_type", "profile_id"], name: "index_users_on_profile_type_and_profile_id"
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index [nil], name: "index_users_on_reset_password_token", unique: true
   end
 
 end
