@@ -4,7 +4,7 @@ class ApplicationController < ActionController::API
   private
 
   def authenticate_user
-    User.find_by!(authentication_token: request.headers.fetch('Authentication-token'))
+    @user = User.find_by!(authentication_token: request.headers.fetch('Authentication-token'))
   rescue
     head(:unauthorized)
   end

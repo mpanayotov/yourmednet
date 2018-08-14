@@ -10,10 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_12_190249) do
+ActiveRecord::Schema.define(version: 2018_08_14_102126) do
+
+  create_table "answers", force: :cascade do |t|
+    t.text "content"
+    t.integer "MedCase_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["MedCase_id"], name: "index_answers_on_MedCase_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "content"
+    t.string "commentable_type"
+    t.integer "commentable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
+  end
 
   create_table "doctor_profiles", force: :cascade do |t|
-    t.string "name"
     t.string "specialty"
     t.integer "age"
     t.text "biography"
@@ -23,9 +39,18 @@ ActiveRecord::Schema.define(version: 2018_08_12_190249) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "med_cases", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_med_cases_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
-    t.string "email"
+    t.string "email", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "profile_type"

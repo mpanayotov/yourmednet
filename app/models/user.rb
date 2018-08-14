@@ -4,4 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable
 
   belongs_to :profile, polymorphic: true
+
+  has_many :med_cases
 end
