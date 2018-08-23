@@ -1,7 +1,7 @@
 module V1
   class CasefeedController < ApplicationController
-    def show
-      cases = MedCase.last()
+    def feed
+      render json: MedCase.all()
     end
   end
 end
