@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  med_case: one
+  document: MyString
+
+two:
+  med_case: two
+  document: MyString

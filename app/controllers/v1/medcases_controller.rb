@@ -7,7 +7,7 @@ module V1
     def create
       if params[:title].present? && params[:description].present?
         MedCase.create!(title: params[:title], description: params[:description], author: @user)
-        head(:ok)
+        head(:created)
       else
         head(:bad_request, message: 'title and description must be present')
       end
