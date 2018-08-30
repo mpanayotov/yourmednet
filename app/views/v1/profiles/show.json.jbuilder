@@ -1,1 +1,1 @@
-json.extract! @profile, :name, :specialty, :picture
+json.extract! @profile, :name, :specialty, :picture, :workplace, :biography

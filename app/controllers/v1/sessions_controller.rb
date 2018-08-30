@@ -1,6 +1,6 @@
 module V1
   class SessionsController < ApplicationController
-    skip_before_action :authenticate_user
+    skip_before_action :authenticate_user, only: :create
 
     def create
       user = User.find_by(email: params[:email])
@@ -10,6 +10,10 @@ module V1
       else
         head(:unauthorized)
       end
+    end
+
+    def session_profile
+      @profile = DoctorProfile.find_by(user: @user)
     end
   end
 end

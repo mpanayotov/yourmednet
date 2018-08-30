@@ -3,7 +3,7 @@ module V1
     skip_before_action :authenticate_user, only: :create
 
     def show
-      @profile = DoctorProfile.find_by(user: @user)
+      @profile = DoctorProfile.find_by(user: User.find(params[:id]))
     end
 
     def create

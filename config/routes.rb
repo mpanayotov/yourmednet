@@ -5,8 +5,8 @@ Rails.application.routes.draw do
     resources :medcases, only: [:show, :create]
     resources :answers, only: [:create]
     resources :comments, only: [:create]
-    get 'profiles', to: 'profiles#show'
-    post 'profiles', to: 'profiles#create'
-    resources :sessions, only: [:create]
+    resources :profiles, only: [:show, :create]
+    post 'sessions', to: 'sessions#create'
+    get 'session_profile', to: 'sessions#session_profile'
   end
 end

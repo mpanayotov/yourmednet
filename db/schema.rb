@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 2018_08_27_205210) do
     t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["profile_type", "profile_id"], name: "index_users_on_profile_type_and_profile_id"
+    t.index [nil], name: "index_users_on_reset_password_token", unique: true
   end
 
 end

@@ -3,7 +3,7 @@ module V1
     before_action :set_medcase_params, only: :create
 
     def feed
-      @medcases = MedCase.includes({ author: :profile }, :documents)
+      @medcases = scoped_medcases.order('created_at desc').limit(5)
     end
 
     def create
@@ -25,6 +25,17 @@ module V1
 
     def set_medcase_params
       @medcase_params ||= params.require(:medcase).permit(:title, :description, :document_data => [])
+    end
+
+    def scoped_medcases
+      default_scope = MedCase.includes({ author: :profile }, :documents)
+      default_scope.where("title LIKE ? OR description LIKE ?", "%#{filter_params[:search]}%", "%#{filter_params[:search]}%") if filter_params[:search].present?
+      default_scope
+    end
+
+    def filter_params
+      # byebug
+      @filter_params ||= params.require(:filter).permit(:search)
     end
   end
 end
