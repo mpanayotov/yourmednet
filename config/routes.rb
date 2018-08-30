@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :answers, only: [:create]
     resources :comments, only: [:create]
     get 'profiles', to: 'profiles#show'
+    post 'profiles', to: 'profiles#create'
     resources :sessions, only: [:create]
   end
 end
