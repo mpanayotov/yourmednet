@@ -6,4 +6,6 @@ class User < ApplicationRecord
   belongs_to :profile, polymorphic: true
 
   has_many :med_cases
+
+  has_many :answers
 end
