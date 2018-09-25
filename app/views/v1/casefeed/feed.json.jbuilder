@@ -1,8 +1,9 @@
 json.array! @medcases do |medcase|
   json.id medcase.id
   json.author do
-    json.name medcase.author.name
-    json.picture medcase.author.profile.picture
+    json.name medcase.author.display_name
+    json.picture medcase.author.display_picture
+    json.anonymous medcase.author.profile.anonymous
     json.id medcase.author.id
   end
   json.title medcase.title
