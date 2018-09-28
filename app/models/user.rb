@@ -20,6 +20,6 @@ class User < ApplicationRecord
   private
 
   def anonymous_name
-    "Доктор, #{profile.city}"
+    "Лекар, #{profile.city}"
   end
 end

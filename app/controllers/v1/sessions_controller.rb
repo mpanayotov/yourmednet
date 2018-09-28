@@ -11,7 +11,7 @@ module V1
       user = User.find_by(email: params[:email])
 
       if user&.valid_password?(params[:password])
-        render json: user.as_json(only: [:email, :name, :authentication_token]), status: :created
+        render json: user.as_json(only: [:authentication_token]), status: :created
       else
         head(:unauthorized)
       end
@@ -34,7 +34,7 @@ module V1
     def profile_params
       @profile_params = params.require(:profile).permit(
                   :picture, :workplace, :specialty, :city, :biography, :anonymous,
-                  user_attributes: [:name])
+                   user_attributes: [:name])
     end
   end
 end
